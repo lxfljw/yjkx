@@ -1,0 +1,91 @@
+# 有迹可循官网（单页）实现计划
+
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+
+**Goal:** 在 `yjkx/` 内交付可部署的单页官网（8 区块、3 处「立即体验」、演示图横向浏览与点击放大、FAQ 折叠）。需要可搬运的构建物时，在 `yjkx` 内执行 `pnpm build`，输出到 **`yjkx/dist/`**（仅本目录，不碰博客仓库其他路径）。
+
+**Architecture:** 纯静态 HTML/CSS/JS，无框架；体验链接集中在 `main.js` 的 `EXPERIENCE_URL` 常量。`yjkx/docs` 使用 `.txt` 扩展名，避免父仓库 VitePress 把设计稿当页面构建。`build-dist` 仅复制 `index.html`、`styles.css`、`main.js`、`assets/` 到 `yjkx/dist`，不拷贝 `docs/`。
+
+**Tech Stack:** HTML5、CSS（变量 + 响应式）、原生 JS（事件委托、`<dialog>` 或自定义 lightbox）。
+
+---
+
+### Task 1: 资源与目录
+
+**Files:**
+- Create: `yjkx/assets/*.png`（5 张产品截图）
+- Create: `yjkx/scripts/build-dist.mjs`（输出到 `yjkx/dist`）
+- Create: `yjkx/package.json`（`pnpm build` → `build-dist`）
+
+- [ ] **Step 1:** 将以下 5 张图复制到 `yjkx/assets/` 并命名为 `01-spaces.png` … `05-profile.png`（与演示区顺序一致：空间首页、搜索、新建空间、分类浏览、我的）。
+
+源文件（本机 Cursor assets）：
+- `image-9da7aba0-ad67-4a5f-af26-6a59f74d8c9f.png` → `01-spaces.png`
+- `image-d4c3b298-4536-4c66-8289-58252a274238.png` → `02-search.png`
+- `image-7db76835-4811-4d4e-b033-e86952199790.png` → `03-new-space.png`
+- `image-3e03b533-df2b-4580-a435-408668ac977c.png` → `04-category.png`
+- `image-bb699478-f579-4804-9518-953a2d660ded.png` → `05-profile.png`
+
+- [ ] **Step 2:** 在 `yjkx/scripts/build-dist.mjs` 中实现：清空并写入 `yjkx/dist/`，仅复制 `index.html`、`styles.css`、`main.js` 与 `assets/**`。
+
+- [ ] **Step 3:** 在 `yjkx/package.json` 增加 `"build": "node scripts/build-dist.mjs"`。**不要**修改博客仓库根目录任何文件。
+
+---
+
+### Task 2: 页面骨架与样式
+
+**Files:**
+- Create: `yjkx/index.html`
+- Create: `yjkx/styles.css`
+
+- [ ] **Step 1:** `index.html` 包含：顶栏导航（锚点：#features、#flow、#faq；外链体验）、8 个 `section`（id：`hero`、`pain`、`features`、`demo`、`flow`、`value`、`faq`、`cta`），演示区为可横向滚动容器 + 每张图带 `alt`。
+
+- [ ] **Step 2:** `styles.css` 定义 CSS 变量（背景米白、强调色 `#E85A4A` 附近可调）、顶栏 sticky、卡片圆角与阴影、移动端优先断点；首屏占位 `.hero-visual` 独立成块便于换图。
+
+---
+
+### Task 3: 交互脚本
+
+**Files:**
+- Create: `yjkx/main.js`
+
+- [ ] **Step 1:** 定义 `const EXPERIENCE_URL = 'https://shou-na-zhu-shou1.superun.yun/'`；为所有带 `data-experience` 的链接与按钮绑定 `click` → `location.href = EXPERIENCE_URL`。
+
+- [ ] **Step 2:** 演示区：容器 `overflow-x: auto; scroll-snap-type: x mandatory`；点击图片打开全屏遮罩层展示大图（`img` src 与当前点击一致），点击遮罩或关闭按钮关闭。
+
+- [ ] **Step 3:** FAQ 使用 `<details>`/`<summary>`，默认折叠；无需额外 JS，除非需 analytics 占位（首版不加）。
+
+---
+
+### Task 4: 验证
+
+- [ ] **Step 1:** 本地直接打开 `yjkx/index.html`，检查 8 区块、体验按钮同链、5 图可滑可点、FAQ 折叠。
+
+- [ ] **Step 2:** 在 `yjkx` 内执行 `pnpm build`，确认 `yjkx/dist/` 下文件完整（若你把整包迁到别处，部署 `dist` 或根目录静态文件即可）。
+
+---
+
+## Spec 对照
+
+| 设计稿章节 | 对应实现 |
+|------------|----------|
+| 8 个结构分区 | 8 个 `section` |
+| 立即体验 ×3 + 同链 | `data-experience` + `EXPERIENCE_URL` |
+| 演示 5 图 | `assets/01`…`05` + 横向滚动 + lightbox |
+| FAQ 折叠 | `<details>` |
+| 首屏可替换 | `.hero-visual` 独立 |
+
+## Self-review
+
+- 无 TBD：体验 URL 已写为当前 H5；若变更只改 `main.js` 一处。
+- 发布不包含 `yjkx/docs`：`build-dist` 仅复制白名单文件。
+
+---
+
+**Plan complete.** 保存路径：`yjkx/docs/superpowers/plans/2026-04-08-you-ji-ke-xun-official-site.txt`。
+
+**执行方式任选：**  
+1. **Subagent-Driven** — 每任务独立子代理执行  
+2. **Inline** — 本会话按任务直接改代码  
+
+（本次将按 **Inline** 连续完成 Task 1–4。）

@@ -1,0 +1,9 @@
+dist/
+node_modules/
+.DS_Store
+*.log
+
+# Next.js (official site project)
+official-site/node_modules/
+official-site/.next/
+official-site/out/
