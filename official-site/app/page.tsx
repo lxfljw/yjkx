@@ -33,13 +33,13 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <MotionSection><Pain /></MotionSection>
-        <MotionSection delay={60}><Value /></MotionSection>
-        <MotionSection delay={120}><Features /></MotionSection>
-        <MotionSection><Flow /></MotionSection>
-        <MotionSection><Demo /></MotionSection>
-        <MotionSection><Faq /></MotionSection>
-        <MotionSection><Cta /></MotionSection>
+        <MotionSection delay={100}><Pain /></MotionSection>
+        <MotionSection delay={200}><Value /></MotionSection>
+        <MotionSection delay={300}><Features /></MotionSection>
+        <MotionSection delay={400}><Flow /></MotionSection>
+        <MotionSection delay={500}><Demo /></MotionSection>
+        <MotionSection delay={600}><Faq /></MotionSection>
+        <MotionSection delay={700}><Cta /></MotionSection>
       </main>
       <Footer />
     </>
