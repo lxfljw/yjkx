@@ -58,3 +58,16 @@ npm run start
 - `VERCEL_PROJECT_ID`
 
 以上值可从 Vercel 项目设置或 `vercel link` 获取。
+
+## 发布（GitHub Pages）
+仓库包含工作流：
+- `.github/workflows/deploy-pages.yml`
+
+推送到 `main` 后自动触发构建与发布，也支持 `workflow_dispatch` 手动触发。
+
+### Pages 仓库设置
+在 GitHub 仓库中进入 `Settings -> Pages`：
+- `Source` 选择 `GitHub Actions`
+
+### 访问地址
+- `https://lxfljw.github.io/yjkx/`
