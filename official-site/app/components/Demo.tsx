@@ -37,8 +37,8 @@ export default function Demo() {
       </div>
 
       {lightbox && (
-        <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center" onClick={() => setLightbox(null)}>
-          <div className="relative" onClick={e => e.stopPropagation()}>
+        <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center lightbox-overlay" onClick={() => setLightbox(null)}>
+          <div className="relative lightbox-content" onClick={e => e.stopPropagation()}>
             <button onClick={() => setLightbox(null)} className="absolute -top-8 right-0 text-white text-2xl">×</button>
             <Image src={lightbox.src} alt={lightbox.alt} width={390} height={844} className="rounded-2xl max-h-[85vh] w-auto" />
           </div>
