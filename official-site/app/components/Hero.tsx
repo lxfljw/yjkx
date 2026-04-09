@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { usePrefersReducedMotion } from './usePrefersReducedMotion'
 
@@ -8,16 +8,21 @@ const EXPERIENCE_URL = 'https://shou-na-zhu-shou1.superun.yun/'
 
 export default function Hero() {
   const prefersReducedMotion = usePrefersReducedMotion()
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
 
   return (
     <section id="hero" className="relative bg-[#fdf8f6] py-20 overflow-hidden">
-      {prefersReducedMotion ? null : (
+      {isMounted && !prefersReducedMotion ? (
         <canvas
           aria-hidden="true"
           className="absolute inset-0 pointer-events-none"
           data-testid="hero-particles"
         />
-      )}
+      ) : null}
       <div className="max-w-5xl mx-auto px-4 flex flex-col md:flex-row items-center gap-12">
         <div className="flex-1">
           <p className="text-sm text-[#E85A4A] font-medium mb-3">家庭物品 · 空间收纳</p>

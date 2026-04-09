@@ -25,12 +25,18 @@ export function usePrefersReducedMotion() {
 
     handleChange()
 
-    mediaQueryList.addEventListener?.('change', handleChange)
-    mediaQueryList.addListener?.(handleChange)
+    if (typeof mediaQueryList.addEventListener === 'function') {
+      mediaQueryList.addEventListener('change', handleChange)
+    } else {
+      mediaQueryList.addListener?.(handleChange)
+    }
 
     return () => {
-      mediaQueryList.removeEventListener?.('change', handleChange)
-      mediaQueryList.removeListener?.(handleChange)
+      if (typeof mediaQueryList.removeEventListener === 'function') {
+        mediaQueryList.removeEventListener('change', handleChange)
+      } else {
+        mediaQueryList.removeListener?.(handleChange)
+      }
     }
   }, [])
 

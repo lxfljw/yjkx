@@ -1,4 +1,4 @@
-import { cleanup, render, screen } from '@testing-library/react'
+import { cleanup, render, screen, waitFor } from '@testing-library/react'
 import React from 'react'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 
@@ -34,11 +34,13 @@ describe('Hero motion behavior', () => {
     expect(screen.queryByTestId('hero-particles')).not.toBeInTheDocument()
   })
 
-  it('renders particles when user does not prefer reduced motion', () => {
+  it('renders particles when user does not prefer reduced motion', async () => {
     stubMatchMedia(false)
 
     render(<Hero />)
 
-    expect(screen.getByTestId('hero-particles')).toBeInTheDocument()
+    await waitFor(() => {
+      expect(screen.getByTestId('hero-particles')).toBeInTheDocument()
+    })
   })
 })
