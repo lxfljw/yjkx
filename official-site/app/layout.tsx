@@ -16,6 +16,11 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: '有迹可循 - 家庭物品收纳管理',
   description: '有迹可循官网：用空间拍照与物品标记，记住每件东西放在哪里，支持拿走放回与轨迹查看。',
+  icons: {
+    icon: '/logo.png',
+    shortcut: '/logo.png',
+    apple: '/logo.png',
+  },
 };
 
 export default function RootLayout({
