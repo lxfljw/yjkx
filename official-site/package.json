@@ -2,13 +2,12 @@
   "name": "nextjs-site",
   "version": "0.1.0",
   "private": true,
-  "packageManager": "pnpm@9.9.0",
   "scripts": {
     "dev": "NODE_ENV=development next dev",
     "build": "NODE_ENV=production next build",
     "start": "NODE_ENV=production next start",
     "lint": "next lint",
-    "test": "vitest",
+    "test": "vitest --passWithNoTests",
     "test:run": "vitest run --passWithNoTests"
   },
   "dependencies": {
