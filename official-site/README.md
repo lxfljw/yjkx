@@ -61,7 +61,7 @@ npm run start
 
 ## 发布（GitHub Pages）
 仓库包含工作流：
-- `.github/workflows/deploy-pages.yml`
+- `.github/workflows/nextjs.yml`
 
 推送到 `main` 后自动触发构建与发布，也支持 `workflow_dispatch` 手动触发。
 
