@@ -1,6 +1,6 @@
-import { act, render, screen } from '@testing-library/react'
-import React, { useRef } from 'react'
-import { describe, expect, it, vi } from 'vitest'
+import { act, cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
+import React, { useRef, useState } from 'react'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 
 import { useInViewOnce } from '../useInViewOnce'
 
@@ -47,10 +47,30 @@ function TestComponent() {
   )
 }
 
-describe('useInViewOnce', () => {
-  it('returns true after first intersection and stays true', () => {
-    MockIntersectionObserver.instances = []
+function DelayedTargetComponent() {
+  const [mounted, setMounted] = useState(false)
+  const ref = useRef<HTMLDivElement | null>(null)
+  const inView = useInViewOnce(ref)
 
+  return (
+    <div>
+      <button data-testid="mount" onClick={() => setMounted(true)} type="button">
+        mount
+      </button>
+      {mounted ? <div ref={ref} data-testid="target" /> : null}
+      <span data-testid="value">{String(inView)}</span>
+    </div>
+  )
+}
+
+afterEach(() => {
+  cleanup()
+  vi.unstubAllGlobals()
+  MockIntersectionObserver.instances = []
+})
+
+describe('useInViewOnce', () => {
+  it('returns true after first intersection and stays true, then disconnects', () => {
     vi.stubGlobal('IntersectionObserver', MockIntersectionObserver)
 
     render(<TestComponent />)
@@ -59,19 +79,44 @@ describe('useInViewOnce', () => {
 
     const observer = MockIntersectionObserver.instances[0]
     expect(observer).toBeDefined()
+    expect(observer.observe).toHaveBeenCalledTimes(1)
 
     act(() => {
       observer.trigger(true)
     })
 
     expect(screen.getByTestId('value')).toHaveTextContent('true')
+    expect(observer.disconnect).toHaveBeenCalled()
 
     act(() => {
       observer.trigger(false)
     })
 
     expect(screen.getByTestId('value')).toHaveTextContent('true')
+  })
 
-    vi.unstubAllGlobals()
+  it('observes element when target mounts after initial render', async () => {
+    vi.stubGlobal('IntersectionObserver', MockIntersectionObserver)
+
+    render(<DelayedTargetComponent />)
+
+    expect(screen.getByTestId('value')).toHaveTextContent('false')
+    expect(MockIntersectionObserver.instances).toHaveLength(0)
+
+    fireEvent.click(screen.getByTestId('mount'))
+
+    await waitFor(() => {
+      expect(MockIntersectionObserver.instances).toHaveLength(1)
+    })
+
+    const observer = MockIntersectionObserver.instances[0]
+    expect(observer).toBeDefined()
+    expect(observer.observe).toHaveBeenCalledTimes(1)
+
+    act(() => {
+      observer.trigger(true)
+    })
+
+    expect(screen.getByTestId('value')).toHaveTextContent('true')
   })
 })
