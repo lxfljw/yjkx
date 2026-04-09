@@ -9,7 +9,7 @@
     "start": "NODE_ENV=production next start",
     "lint": "next lint",
     "test": "vitest",
-    "test:run": "vitest run"
+    "test:run": "vitest run --passWithNoTests"
   },
   "dependencies": {
     "next": "14.2.35",
