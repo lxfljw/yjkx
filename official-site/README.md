@@ -1,53 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 有迹可循官网（official-site）
 
-## Getting Started
+有迹可循官网是一个基于 Next.js 14 的单页站点，用于介绍「家庭物品收纳管理」能力，并引导用户进入 H5 体验页。
 
-First, run the development server:
+## 技术栈
+- Next.js 14（App Router）
+- React 18 + TypeScript
+- Tailwind CSS
 
+## 本地开发
 ```bash
+cd official-site
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+默认访问：`http://localhost:3000`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 构建与启动
+```bash
+cd official-site
+npm run lint
+npm run build
+npm run start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 页面结构
+首页由以下区块组成（见 `app/page.tsx`）：
+1. Header
+2. Hero
+3. Pain
+4. Value
+5. Features
+6. Flow
+7. Demo
+8. Faq
+9. Cta
+10. Footer
 
-## Learn More
+对应组件目录：`app/components/`
 
-To learn more about Next.js, take a look at the following resources:
+## 体验链接
+当前体验地址：
+- `https://shou-na-zhu-shou1.superun.yun/`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+已在多个区块按钮中使用（Header/Hero/Demo/Cta）。如需替换，请同步更新这些组件中的 `EXPERIENCE_URL` 常量。
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 发布（GitHub Actions + Vercel）
+仓库包含工作流：
+- `.github/workflows/deploy-vercel.yml`
 
-## GitHub Actions Deploy (Vercel)
+推送到 `main` 后自动触发部署，也支持 `workflow_dispatch` 手动触发。
 
-This project includes a GitHub Actions workflow:
-
-- [deploy-vercel.yml](.github/workflows/deploy-vercel.yml)
-
-It will deploy to Vercel automatically when pushing to `main`, and also supports manual trigger via `workflow_dispatch`.
-
-### Required GitHub Secrets
-
-Configure these repository secrets:
-
+### 必需 Secrets
+请在 GitHub 仓库中配置：
 - `VERCEL_TOKEN`
 - `VERCEL_ORG_ID`
 - `VERCEL_PROJECT_ID`
 
-You can get them from Vercel:
-
-- `VERCEL_TOKEN`: Vercel Account Settings -> Tokens
-- `VERCEL_ORG_ID` / `VERCEL_PROJECT_ID`: from your Vercel project (`vercel link` / project settings)
-
-After secrets are configured, push to `main` to trigger deployment.
+以上值可从 Vercel 项目设置或 `vercel link` 获取。

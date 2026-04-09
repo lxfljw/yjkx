@@ -9,8 +9,8 @@ export default function Hero() {
           <h1 className="text-4xl font-bold text-gray-900 mb-4 leading-tight">告别翻箱倒柜，<br />把家还给生活</h1>
           <p className="text-gray-600 mb-8 text-lg">有迹可循通过空间拍照与物品标记，帮你记住每件物品放在哪里，支持拿走放回与轨迹查看。</p>
           <div className="flex gap-4">
-            <a href={EXPERIENCE_URL} className="bg-[#E85A4A] text-white px-6 py-3 rounded-full font-medium hover:bg-[#d44a3a] transition-colors">立即体验</a>
-            <a href="#features" className="border border-gray-300 text-gray-700 px-6 py-3 rounded-full font-medium hover:bg-gray-50 transition-colors">了解能力</a>
+            <a href="#features" className="bg-[#E85A4A] text-white px-6 py-3 rounded-full font-medium hover:bg-[#d44a3a] transition-colors">了解能力</a>
+            <a href={EXPERIENCE_URL} className="border border-gray-300 text-gray-700 px-6 py-3 rounded-full font-medium hover:bg-gray-50 transition-colors">立即体验</a>
           </div>
         </div>
         <div className="flex-shrink-0 w-48 h-96 bg-gray-200 rounded-3xl flex items-center justify-center text-gray-400 text-sm">

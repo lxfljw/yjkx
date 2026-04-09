@@ -19,8 +19,8 @@ export default function Demo() {
   return (
     <section id="demo" className="py-16 bg-white">
       <div className="max-w-5xl mx-auto px-4">
-        <h2 className="text-2xl font-bold text-center text-gray-900 mb-2">产品界面预览</h2>
-        <p className="text-center text-gray-500 text-sm mb-8">左右滑动查看截图，点击可放大。</p>
+        <h2 className="text-2xl font-bold text-center text-gray-900 mb-2">看一眼就知道怎么用</h2>
+        <p className="text-center text-gray-500 text-sm mb-8">空间、搜索、新建空间、分类、我的，左右滑动查看，点击可放大。</p>
         <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory">
           {images.map(img => (
             <figure key={img.src} className="flex-shrink-0 snap-start">
