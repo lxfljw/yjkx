@@ -1,9 +1,18 @@
-dist/
-node_modules/
+# OS
 .DS_Store
+
+# logs
 *.log
 
-# Next.js (official site project)
-official-site/node_modules/
-official-site/.next/
-official-site/out/
+# local dependencies/build outputs (outer repo only)
+node_modules/
+dist/
+.next/
+out/
+coverage/
+*.tsbuildinfo
+
+# editor temp files
+.vscode/
+.idea/
+*.swp
