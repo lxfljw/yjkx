@@ -52,11 +52,20 @@ export default function Demo() {
               swiperRef.current?.autoplay?.start()
             }}
           >
-            {images.map(img => (
+            {images.map((img, index) => (
               <SwiperSlide key={img.src}>
                 <figure className="px-2">
                   <div className="demo-card rounded-2xl overflow-hidden shadow-md">
-                    <Image src={img.src} alt={img.alt} width={195} height={422} className="block w-full h-auto" />
+                    <Image
+                      src={img.src}
+                      alt={img.alt}
+                      width={195}
+                      height={422}
+                      className="block w-full h-auto"
+                      loading={index < 3 ? 'eager' : 'lazy'}
+                      fetchPriority={index === 0 ? 'high' : 'auto'}
+                      sizes="(max-width: 768px) 70vw, 195px"
+                    />
                   </div>
                   <figcaption className="text-center text-sm text-gray-500 mt-2">{img.caption}</figcaption>
                 </figure>
