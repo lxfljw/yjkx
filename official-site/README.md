@@ -10,8 +10,8 @@
 ## 本地开发
 ```bash
 cd official-site
-npm install
-npm run dev
+pnpm install
+pnpm dev
 ```
 
 默认访问：`http://localhost:3000`
@@ -19,9 +19,9 @@ npm run dev
 ## 构建与启动
 ```bash
 cd official-site
-npm run lint
-npm run build
-npm run start
+pnpm lint
+pnpm build
+pnpm start
 ```
 
 ## 页面结构
@@ -44,20 +44,6 @@ npm run start
 - `https://shou-na-zhu-shou1.superun.yun/`
 
 已在多个区块按钮中使用（Header/Hero/Demo/Cta）。如需替换，请同步更新这些组件中的 `EXPERIENCE_URL` 常量。
-
-## 发布（GitHub Actions + Vercel）
-仓库包含工作流：
-- `.github/workflows/deploy-vercel.yml`
-
-推送到 `main` 后自动触发部署，也支持 `workflow_dispatch` 手动触发。
-
-### 必需 Secrets
-请在 GitHub 仓库中配置：
-- `VERCEL_TOKEN`
-- `VERCEL_ORG_ID`
-- `VERCEL_PROJECT_ID`
-
-以上值可从 Vercel 项目设置或 `vercel link` 获取。
 
 ## 发布（GitHub Pages）
 仓库包含工作流：
