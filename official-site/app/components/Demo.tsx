@@ -9,9 +9,9 @@ import type { Swiper as SwiperType } from 'swiper'
 const EXPERIENCE_URL = 'https://shou-na-zhu-shou1.superun.yun/'
 
 const images = [
-  { src: '/01-spaces.png', alt: '空间首页：房间与物品概览', caption: '空间' },
+  { src: '/01-spaces.png', alt: '首页：收纳场景概览', caption: '首页' },
   { src: '/02-search.png', alt: '搜索：快速查找物品', caption: '搜索' },
-  { src: '/03-new-space.png', alt: '新建空间', caption: '新建空间' },
+  { src: '/03-new-space.png', alt: '数据页', caption: '数据' },
   { src: '/04-category.png', alt: '分类浏览', caption: '分类' },
   { src: '/05-profile.png', alt: '我的：统计与设置', caption: '我的' },
 ]
@@ -23,7 +23,7 @@ export default function Demo() {
     <section id="demo" className="py-16 bg-white">
       <div className="max-w-5xl mx-auto px-4">
         <h2 className="text-2xl font-bold text-center text-gray-900 mb-2">看一眼就知道怎么用</h2>
-        <p className="text-center text-gray-500 text-sm mb-8">空间、搜索、新建空间、分类、我的，左右滑动查看。</p>
+        <p className="text-center text-gray-500 text-sm mb-8">首页、搜索、数据、分类、我的，左右滑动查看。</p>
         <div className="relative max-w-4xl mx-auto overflow-hidden pb-10">
           <Swiper
             modules={[Autoplay]}
@@ -34,13 +34,14 @@ export default function Demo() {
             slidesPerGroup={1}
             spaceBetween={24}
             speed={400}
-            autoplay={{ delay: 2400, disableOnInteraction: false }}
+            autoplay={{ delay: 5000, disableOnInteraction: false }}
             breakpoints={{
               0: { slidesPerView: 1.2, spaceBetween: 14, centeredSlides: true },
               768: { slidesPerView: 3, spaceBetween: 24, centeredSlides: true },
             }}
             onSwiper={swiper => {
               swiperRef.current = swiper
+              swiper.slideToLoop(0, 0, false)
             }}
             onMouseEnter={() => swiperRef.current?.autoplay?.stop()}
             onMouseLeave={() => swiperRef.current?.autoplay?.start()}

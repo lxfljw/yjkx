@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
+import Image from 'next/image'
 
 import { usePrefersReducedMotion } from './usePrefersReducedMotion'
 
@@ -33,8 +34,15 @@ export default function Hero() {
             <a href={EXPERIENCE_URL} className="border border-gray-300 text-gray-700 px-6 py-3 rounded-full font-medium hover:bg-gray-50 transition-colors">立即体验</a>
           </div>
         </div>
-        <div className="flex-shrink-0 w-48 h-96 bg-gray-200 rounded-3xl flex items-center justify-center text-gray-400 text-sm">
-          首屏主视觉
+        <div className="flex-shrink-0 w-48 h-96 rounded-3xl overflow-hidden shadow-md">
+          <Image
+            src="/01-spaces.png"
+            alt="首页主视觉"
+            width={384}
+            height={768}
+            className="w-full h-full object-cover"
+            priority
+          />
         </div>
       </div>
     </section>
